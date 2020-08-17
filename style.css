@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+}
+.notification{
+    display: none;
+}
+
+body{
+    background: url(bg.jpg) no-repeat center top;
+    background-size: cover;
+
+}
+
+
+.weather__app{
+    min-height: 550px;
+    height:100vh;
+    display: flex;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+    flex-direction: column;
+}
