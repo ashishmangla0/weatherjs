@@ -68,8 +68,9 @@ getWeatherGeo =(latitude, longitude)=>{
 setPosition = (position) =>{
     let long = position.coords.longitude;
     let lat = position.coords.latitude;
+    console.log(Math.round(long))
     console.log(`this are the coordinates this is long:${long}, this is lat:${lat}`);
-    getWeatherGeo(long,long)
+    getWeatherGeo(long,lat)
 }
 showError = (error) =>{
     notification.style.display = "block";
