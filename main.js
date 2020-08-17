@@ -4,6 +4,7 @@ const api = {
 };
 const weatherForm = document.querySelector(".weather__form");
 const weatherInput = document.querySelector(".weather__input");
+const notification = document.querySelector('.notification');
 const Kelvin = 273.15
 
 // values data
@@ -11,6 +12,7 @@ const weatherCity = document.querySelector('.weather__city');
 const weatherDate = document.querySelector('.weather__date');
 const weatherCelsius = document.querySelector('.weather__celsius');
 const now = new Date();
+
 // date  function
 function dateBuilder(d) {
   let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -19,7 +21,6 @@ function dateBuilder(d) {
   let date = d.getDate();
   let month = months[d.getMonth()];
   let year = d.getFullYear();
-
   return `${day} ${date} ${month} ${year}`;
 }
 //fetch function url is parameter
@@ -34,7 +35,6 @@ const fetchUrl = (apiurl) => {
     });
 }
 
-
 //form sunbmit
 weatherForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -47,10 +47,9 @@ const getWeatherByInput = (cityname) => {
   fetchUrl(apiGeoCity)
 };
 const weatherDetail = (weather) => {
-  console.log(weather);
   weatherCity.innerHTML = `${weather.name},${weather.sys.country}`;
   weatherDate.innerHTML = dateBuilder(now);
-  weatherCelsius.innerHTML = `${Math.round(weather.main.temp - Kelvin)}`
+  weatherCelsius.innerHTML = `${Math.round(weather.main.temp - Kelvin)} <span>°c</span>`
 }
 window.addEventListener('load', () => {
   if (navigator.geolocation) {
@@ -62,17 +61,15 @@ window.addEventListener('load', () => {
   }
 })
 getWeatherGeo =(latitude, longitude)=>{
-  let apiGeo = `${api.base}/weather?lat=${latitude}&lon=${longitude}&appid=${api.key}`;
+  let apiGeo = `${api.base}/weather?lat=${longitude}&lon=${latitude}&appid=${api.key}`;
   fetchUrl(apiGeo)
 }
 setPosition = (position) =>{
     let long = position.coords.longitude;
     let lat = position.coords.latitude;
-    console.log(Math.round(long))
-    console.log(`this are the coordinates this is long:${long}, this is lat:${lat}`);
     getWeatherGeo(long,lat)
 }
 showError = (error) =>{
     notification.style.display = "block";
-        notification.innerHTML =`<p>${error.message}</p>`
+    notification.innerHTML =`<p>${error.message}</p>`
 }
