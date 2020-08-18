@@ -11,6 +11,8 @@ const Kelvin = 273.15
 const weatherCity = document.querySelector('.weather__city');
 const weatherDate = document.querySelector('.weather__date');
 const weatherCelsius = document.querySelector('.weather__celsius');
+const weatherStatus =  document.querySelector('.weather__status');
+const weatherHiLow = document.querySelector('.weather__hi-low');
 const now = new Date();
 
 // date  function
@@ -31,6 +33,7 @@ const fetchUrl = (apiurl) => {
       return response.json();
     })
     .then((data) => {
+      console.log(data)
       weatherDetail(data);
     });
 }
@@ -49,7 +52,9 @@ const getWeatherByInput = (cityname) => {
 const weatherDetail = (weather) => {
   weatherCity.innerHTML = `${weather.name},${weather.sys.country}`;
   weatherDate.innerHTML = dateBuilder(now);
-  weatherCelsius.innerHTML = `${Math.round(weather.main.temp - Kelvin)} <span>°c</span>`
+  weatherCelsius.innerHTML = `${Math.round(weather.main.temp - Kelvin)}<span>°c</span>`;
+  weatherStatus.innerHTML = `${weather.weather[0].description}`;
+  weatherHiLow.innerHTML =`${Math.round(weather.main.temp_min - Kelvin)}<span>°c</span> / ${Math.round(weather.main.temp_max - Kelvin)}<span>°c</span>`
 }
 window.addEventListener('load', () => {
   if (navigator.geolocation) {
