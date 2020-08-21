@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,45 +8,42 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    
+
     <div class="weather__app">
         <div class="notification"></div>
         <header>
             <form class="weather__form">
                 <div class="weather__form-group">
-                    <input type="text" class="weather__input">
+                    <input type="text" class="weather__input" id="list" list="list-values">
                     <button type="submit" class="weather__form-button">
-                    search now
-                    </button>  
+                        search now
+                    </button>
+                    <datalist id="list-values">
+                        <option value="Edge">
+                        <option value="Firefox">
+                        <option value="Chrome">
+                        <option value="Opera">
+                        <option value="Safari">
+                      </datalist>
                 </div>
-                    
+
             </form>
         </header>
         <main>
-    
-    
-            
-    
             <section>
-                    <div class="weather__city"></div>
-                    <div class="weather__date"></div>
-                    <div class="weather__celsius">
-                        
-                    </div>
-                    <div class="weather__status"></div>
-                    <div class="weather__hi-low"></div>
+                <div class="weather__city"></div>
+                <div class="weather__date"></div>
+                <div class="weather__celsius">
+
+                </div>
+                <div class="weather__status"></div>
+                <div class="weather__hi-low"></div>
             </section>
-    
-    
-            
         </main>
-    <footer></footer>
+        <footer></footer>
     </div>
-
-
-    
-  
     <script src="main.js"></script>
 </body>
 </html>
